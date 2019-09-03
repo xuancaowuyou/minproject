@@ -1,19 +1,35 @@
 <template>
-    <li class="list_item"   @click="goDetails(todo.id)">
-        <img :src="todo.img"/>
-        <p>
-            <span class="item_title">{{todo.title}}</span>
-            <span class="item_price">￥{{todo.price}}</span>  
-        </p>            
-    </li>
+    <ul class="content">
+        <li class="list_item"  v-for="item in goods" :key="item.id"  @click="detailfn(item.id)">
+            <img :src="item.img"/>
+            <p>
+                <span class="item_title">{{item.title}}</span>
+                <span class="item_price">￥{{item.price}}</span>  
+            </p>            
+        </li>
+    </ul>
+    
 </template>
 <script>
 export default {
-    props:['todo'],
+    props:['goods'],
     methods:{
-        goDetails(index){
-            this.$emit("gotodetail",index);
+        detailfn:function(id){
+            let src = this.goods[id].img
+            let title = this.goods[id].title
+            let price = this.goods[id].price
+            this.$router.push({
+                path:'/details',
+                query:{
+                    src:src,
+                    title:title,
+                    price:price
+                }
+            });
         }
+    },
+    created(){
+        console.log()
     }
 }
 </script>

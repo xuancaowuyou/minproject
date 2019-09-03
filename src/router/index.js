@@ -1,35 +1,38 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import One from '@/components/one'
-import Two from '@/components/two'
-import home from '@/pages/home'
-import details from '@/pages/details'
+import Details from '@/pages/details'
+import Home from '@/pages/home'
+import Order from '@/pages/order'
+import Find from '@/pages/find'
+import My from '@/pages/my'
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path:'/one/:id',
-      name:'one',
-      component:One
-    },
-    {
-      path:'/two',
-      component:Two
-    },
-    {
       path:'/home',
       name:'home',
-      component:home
+      component:Home
     },
+    {
+      path:'/order',
+      name:'order',
+      component:Order
+    },
+    {
+      path:'/find',
+      name:'find',
+      component:Find
+    },
+    {
+      path:'/my',
+      name:'my',
+      component:My
+    },    
     {
       path:'/details',
       name:'details',
-      component:details
+      component:Details
     },
-    {
-      path:'/',
-      redirect:'/home'
-    }
   ]
 })

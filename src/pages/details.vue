@@ -1,12 +1,11 @@
 <template>
     <div class="details">
-        <mt-header title="商品详情">
-        <router-link to="/home" slot="left">
-            <mt-button icon="back">返回</mt-button>
-        </router-link>
-        <mt-button icon="more" slot="right"></mt-button>
+        <mt-header title="商品详情" fixed>
+            <router-link to="/home" slot="left">
+                <mt-button icon="back">返回</mt-button>
+            </router-link>
+            <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
-
         <div>
             <img class="det_img" :src="this.$route.query.src"/>
             <p>{{this.$route.query.title}}</p>
@@ -17,10 +16,12 @@
             <li v-for="(stu, index) in searchList(keywords)" :key="index">
                 name:{{stu.name}}
             </li>
-        </ul>           
+        </ul> 
+        
     </div>     
 </template>
 <script>
+
 import bus from '@/assets/bus.js'
 export default {
     data(){
@@ -77,5 +78,9 @@ export default {
 }
 .price{
     color:#ff0000;
+}
+.swipe_box{
+    height:300px;
+    background:#fafafa;
 }
 </style>

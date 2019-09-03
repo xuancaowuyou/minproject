@@ -1,40 +1,19 @@
 <template>
     <div class="bg_color">
         <mt-header fixed title="固定在顶部"></mt-header>
-        <ul class="content">
-            <list v-for="item in goods" :key="item.id" :todo="item" @gotodetail ='detailfn'></list>
-        </ul>
-        <mt-tabbar v-model="selected">
-            <mt-tab-item id="首页">
-                <img slot="icon" v-show="!(selected==='首页')" src="../assets/home_icon.png">
-                <img slot="icon" v-show="selected==='首页'" src="../assets/home_icon_selected.png">
-                首页
-            </mt-tab-item>
-            <mt-tab-item id="订单">
-                <img slot="icon"  v-show="!(selected==='订单')" src="../assets/order_icon.png">
-                <img slot="icon" v-show="selected==='订单'" src="../assets/order_icon_selected.png">
-                订单
-            </mt-tab-item>
-            <mt-tab-item id="发现">
-                <img slot="icon" v-show="!(selected==='发现')" src="../assets/find_icon.png">
-                <img slot="icon" v-show="selected==='发现'" src="../assets/find_icon_selected.png">
-                发现
-            </mt-tab-item>
-            <mt-tab-item id="我的">
-                <img slot="icon"  v-show="!(selected==='我的')" src="../assets/person_icon.png">
-                <img slot="icon" v-show="selected==='我的'" src="../assets/person_icon_selected.png">
-                我的
-            </mt-tab-item>
-        </mt-tabbar>
+        <list :goods="goods"></list>
+        <tabbar :selected="selected" ></tabbar>
     </div>
 </template>
 <script>
-import list from '@/components/list'
 import bus from '@/assets/bus.js'
+import list from '@/components/list'
+import tabbar from '@/components/tabbar'
 export default {
+    name:'home',
     data(){
         return{
-            selected:'首页',
+            selected: "home",
             "goods": [
                 { "id":0,"price": "69.9", "title": "德芙", "img": "http://m.360buyimg.com/babel/s211x211_jfs/t3688/270/776223567/128582/fa074fb3/58170f6dN6b9a12bf.jpg!q50.jpg.webp" },
                 { "id":1,"price": "63", "title": "费列罗", "img": "http://m.360buyimg.com/babel/s211x211_jfs/t613/100/1264998035/221234/1a29d51f/54c34525Nb4f6581c.jpg!q50.jpg.webp"},
@@ -48,36 +27,13 @@ export default {
                 { "id":9,"price": "68", "title": "芒果", "img": "http://m.360buyimg.com/n0/jfs/t3709/334/1378702984/206759/5c100ab5/58253588Naaa05c5c.jpg!q70.jpg"}
             ]
         }
+    },    
+    components:{
+        list,
+        tabbar
     },
     methods:{
-        detailfn:function(id){
-            let src = this.goods[id].img
-            let title = this.goods[id].title
-            let price = this.goods[id].price
-            this.$router.push({
-                path:'/details',
-                query:{
-                    src:src,
-                    title:title,
-                    price:price
-                }
-            });
-            // this.$router.push({
-            //     name:'one',
-            //     params:{
-            //         id:id
-            //     }
-            // })
-        }
-    },
-    components:{
-        list
-    },
-    watch: {
-      selected: function (val, oldVal) {
-        console.log(val)
-        // click后打印出当前mt-tab-item的id
-      }
+        
     },
     created:function(){
         // this.axios.get('http://localhost:801/goodlist.json')
@@ -107,7 +63,7 @@ export default {
 .content{
     width:100%;
     height:100%;
-    padding:40px 0px 55px;
+    padding:46px 0px 55px;
     box-sizing:border-box;
     overflow:auto;
 }
