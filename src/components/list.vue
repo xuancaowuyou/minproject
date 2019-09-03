@@ -1,5 +1,5 @@
 <template>
-    <ul class="content">
+    <ul class="list">
         <li class="list_item"  v-for="item in goods" :key="item.id"  @click="detailfn(item.id)">
             <img :src="item.img"/>
             <p>
@@ -7,8 +7,7 @@
                 <span class="item_price">￥{{item.price}}</span>  
             </p>            
         </li>
-    </ul>
-    
+    </ul>    
 </template>
 <script>
 export default {
@@ -35,8 +34,10 @@ export default {
 </script>
 <style scoped>
 .list{
-    margin-top:8px;
     width:100%;
+    height:100%;
+    padding:46px 0px 55px;
+    box-sizing:border-box;
     overflow:auto;
 }
 .list_item{    

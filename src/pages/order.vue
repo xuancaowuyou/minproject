@@ -1,6 +1,6 @@
 <template>
     <div>
-       order
+       <mt-spinner type="snake" color="#26a2ff"></mt-spinner>
        <tabbar :selected="selected" ></tabbar>
     </div>
 </template>
